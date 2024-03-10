@@ -129,7 +129,7 @@ const Activities = ({ date, user, project }) => {
   };
 
   return (
-    <div className="flex flex-wrap py-3 gap-4 text-black">
+    <div className="flex flex-wrap gap-4 py-3 text-black">
       <div className="w-screen md:w-full p-2 md:!px-8">
         {/* Table Container */}
         {true && (
@@ -175,11 +175,11 @@ const Activities = ({ date, user, project }) => {
                   </tr>
                   {activities.map((e, i) => {
                     return (
-                      <React.Fragment key={e.project}>
+                      <React.Fragment key={e.projectId}>
                         <tr className="border-t border-b border-r border-[#E5EAEF]" key={`1-${e._id}`} onClick={() => setOpen(i)}>
                           <th className="w-[100px] border-t border-b border-r text-[12px] font-bold text-[#212325] text-left">
-                            <div className="flex flex-1 items-center justify-between gap-1 px-2">
-                              <div className="flex flex-1 items-center justify-start gap-1">
+                            <div className="flex items-center justify-between flex-1 gap-1 px-2">
+                              <div className="flex items-center justify-start flex-1 gap-1">
                                 <div>{e.projectName}</div>
                               </div>
                               <div className="flex flex-col items-end">
@@ -190,7 +190,12 @@ const Activities = ({ date, user, project }) => {
                           </th>
                           {e.detail.map((f, j) => {
                             return (
-                              <Field key={`${e.project} ${j}`} invoiced={e.invoiced} value={f.value || 0} onChange={(a) => onUpdateValue(i, j, parseFloat(a.target.value || 0))} />
+                              <Field
+                                key={`${e.projectId} ${j}`}
+                                invoiced={e.invoiced}
+                                value={f.value || 0}
+                                onChange={(a) => onUpdateValue(i, j, parseFloat(a.target.value || 0))}
+                              />
                             );
                           })}
                           <th className={`border border-[#E5EAEF] py-[6px]`}>
@@ -211,9 +216,9 @@ const Activities = ({ date, user, project }) => {
                                 <textarea
                                   value={e.comment}
                                   onChange={(e) => onUpdateComment(i, e.target.value)}
-                                  placeholder={`Please add a comment on what you deliver on ${e.project} (We need to show value created to clients)`}
+                                  placeholder={`Please add a comment on what you deliver on ${e.projectName} (We need to show value created to clients)`}
                                   rows={6}
-                                  className="w-full text-sm pt-2 pl-2"
+                                  className="w-full pt-2 pl-2 text-sm"
                                 />
                               </div>
                             </th>
@@ -224,7 +229,7 @@ const Activities = ({ date, user, project }) => {
                   })}
                   <tr>
                     <th className="w-[50px] text-[12px] text-[#212325] px-[10px] py-2">
-                      <SelectProject disabled={activities.map((e) => e.project)} value="" onChange={(e) => onAddActivities(e)} />
+                      <SelectProject disabled={activities.map((e) => e.projectId)} value="" onChange={(e) => onAddActivities(e)} />
                     </th>
                   </tr>
                 </tbody>
