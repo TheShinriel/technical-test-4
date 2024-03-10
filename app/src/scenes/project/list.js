@@ -44,7 +44,7 @@ const ProjectList = () => {
               onClick={() => history.push(`/project/${hit._id}`)}
               className="flex justify-between flex-wrap p-3 border border-[#FFFFFF] bg-[#F9FBFD] rounded-[16px] mt-3 cursor-pointer">
               <div className="flex w-full md:w-[25%] border-r border-[#E5EAEF]">
-                <div className="flex flex-wrap gap-4 items-center">
+                <div className="flex flex-wrap items-center gap-4">
                   {hit.logo && <img className="w-[85px] h-[85px] rounded-[8px] object-contain	" src={hit.logo} alt="ProjectImage.png" />}
                   <div className="flex flex-col flex-wrap flex-1">
                     <div className="text-[18px] text-[#212325] font-semibold flex flex-wrap">{hit.name}</div>
@@ -97,7 +97,7 @@ const Create = ({ onChangeSearch }) => {
 
   return (
     <div className="mb-[10px] ">
-      <div className="flex justify-between flex-wrap">
+      <div className="flex flex-wrap justify-between">
         {/* Search Input */}
         <div className="relative text-[#A0A6B1]">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -154,7 +154,7 @@ const Create = ({ onChangeSearch }) => {
               }}>
               {({ values, handleChange, handleSubmit, isSubmitting }) => (
                 <React.Fragment>
-                  <div className="w-full md:w-6/12 text-left">
+                  <div className="w-full text-left md:w-6/12">
                     <div>
                       <div className="text-[14px] text-[#212325] font-medium	">Name</div>
                       <input className="projectsInput text-[14px] font-normal text-[#212325] rounded-[10px]" name="name" value={values.name} onChange={handleChange} />
