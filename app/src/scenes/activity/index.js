@@ -131,6 +131,8 @@ const Activities = ({ date, user, project }) => {
   return (
     <div className="flex flex-wrap gap-4 py-3 text-black">
       <div className="w-screen md:w-full p-2 md:!px-8">
+        <p className="text-left text-[#212325]">The list of activities is based on the number of hours consumed per day.</p>
+        <p className="text-left text-[#212325]">Each day has up to 8 hours of work</p>
         {/* Table Container */}
         <div className="mt-2 rounded-xl bg-[#fff] overflow-auto">
           <div className="overflow-x-auto">
