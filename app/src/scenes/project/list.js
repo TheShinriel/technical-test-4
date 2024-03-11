@@ -85,11 +85,25 @@ const Budget = ({ project }) => {
   }, []);
 
   const total = activities.reduce((acc, cur) => acc + cur.value, 0);
+  const totalCost = activities.reduce((acc, cur) => acc + cur.cost, 0);
   const budget_max_monthly = project.budget_max_monthly;
   const width = (100 * total) / budget_max_monthly || 0;
 
-  if (!project.budget_max_monthly) return <div className="mt-2 text-[24px] text-[#212325] font-semibold">{total.toFixed(2)}€</div>;
-  return <ProgressBar percentage={width} max={budget_max_monthly} value={total} />;
+  if (!project.budget_max_monthly)
+    return (
+      <>
+        <div className="mt-2 text-[24px] text-[#212325] font-semibold">{total.toFixed(2)}€</div>
+        <div className="mt-2 text-[12px] text-[#212325] font-semibold">Staff costs: {totalCost.toFixed(2)}€</div>
+        <div className="mt-2 text-[12px] text-[#212325] font-semibold">Capital gains: {(total - totalCost).toFixed(2)}€</div>
+      </>
+    );
+  return (
+    <>
+      <ProgressBar percentage={width} max={budget_max_monthly} value={total} />
+      <div className="mt-2 text-[12px] text-[#212325] font-semibold">Staff costs: {totalCost.toFixed(2)}€</div>
+      <div className="mt-2 text-[12px] text-[#212325] font-semibold">Capital gains: {(total - totalCost).toFixed(2)}€</div>
+    </>
+  );
 };
 
 const Create = ({ onChangeSearch }) => {
